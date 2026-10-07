@@ -1,0 +1,127 @@
+{
+  "cabanas-por-do-sol": {
+    "w": 2048,
+    "h": 1720,
+    "widths": [
+      640,
+      1024,
+      1600
+    ]
+  },
+  "portal-entrada": {
+    "w": 1600,
+    "h": 1200,
+    "widths": [
+      640,
+      1024,
+      1600
+    ]
+  },
+  "trapiche-cachorro": {
+    "w": 1800,
+    "h": 1920,
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "trapiche-lagoa": {
+    "w": 1200,
+    "h": 1408,
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "gansos-lagoa": {
+    "w": 1200,
+    "h": 1440,
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "por-do-sol-lagoa": {
+    "w": 864,
+    "h": 1152,
+    "widths": [
+      480,
+      800
+    ]
+  },
+  "cavalo-cabana": {
+    "w": 650,
+    "h": 522,
+    "widths": [
+      480,
+      650
+    ]
+  },
+  "cavalo-capela": {
+    "w": 1200,
+    "h": 1312,
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "peru": {
+    "w": 1170,
+    "h": 1352,
+    "widths": [
+      480,
+      800
+    ]
+  },
+  "barraca-lagoa": {
+    "w": 1800,
+    "h": 2040,
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "cabana-galinhas": {
+    "w": 512,
+    "h": 640,
+    "widths": [
+      512
+    ]
+  },
+  "ponei-galinhas": {
+    "w": 512,
+    "h": 640,
+    "widths": [
+      512
+    ]
+  },
+  "salao-forro": {
+    "w": 1080,
+    "h": 643,
+    "widths": [
+      640,
+      1080
+    ]
+  },
+  "salao-mesas": {
+    "w": 929,
+    "h": 624,
+    "widths": [
+      640,
+      929
+    ]
+  },
+  "salao-mesa-posta": {
+    "w": 1080,
+    "h": 1257,
+    "widths": [
+      640,
+      1080
+    ]
+  }
+}

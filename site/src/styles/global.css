@@ -1,0 +1,228 @@
+@import '@fontsource-variable/bricolage-grotesque/standard.css';
+@import '@fontsource-variable/shantell-sans/index.css';
+@import 'tailwindcss';
+
+/* Croqui do sítio: terra (capim/pasto), água (lagoa), traço (nanquim) e um amarelo-sinal só para a ação. */
+:root {
+  --lagoa: #1e5e73;
+  --lagoa-funda: #123f4f;
+  --lagoa-texto: #e8f2ee;
+  --lagoa-texto-2: #b9d3d1;
+  --capim: #dce8b5;
+  --capim-claro: #eaf1cf;
+  --pasto: #8db255;
+  --pasto-escuro: #5d7f34;
+  --nanquim: #13222b;
+  --nanquim-2: #3b4d49;
+  --sinal: #f2c230;
+  --sinal-forte: #e0ab12;
+  --chao: #ede1b4;
+  --sombra: 19 34 43;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  color-scheme: light;
+}
+
+/* O croqui à noite: terra escura, água mais funda, traço em giz. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --lagoa: #0f3a48;
+    --lagoa-funda: #0a2731;
+    --lagoa-texto: #e2eeea;
+    --lagoa-texto-2: #a9c6c3;
+    --capim: #1b261d;
+    --capim-claro: #233126;
+    --pasto: #3f5a2c;
+    --pasto-escuro: #8db255;
+    --nanquim: #e4ecd3;
+    --nanquim-2: #b6c3ad;
+    --chao: #4a4630;
+    --sombra: 0 0 0;
+    color-scheme: dark;
+  }
+}
+
+@theme {
+  --font-sans: 'Bricolage Grotesque Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-hand: 'Shantell Sans Variable', 'Comic Sans MS', ui-rounded, sans-serif;
+  --color-lagoa: var(--lagoa);
+  --color-lagoa-funda: var(--lagoa-funda);
+  --color-lagoa-texto: var(--lagoa-texto);
+  --color-lagoa-texto-2: var(--lagoa-texto-2);
+  --color-capim: var(--capim);
+  --color-capim-claro: var(--capim-claro);
+  --color-pasto: var(--pasto);
+  --color-pasto-escuro: var(--pasto-escuro);
+  --color-nanquim: var(--nanquim);
+  --color-nanquim-2: var(--nanquim-2);
+  --color-sinal: var(--sinal);
+  --color-sinal-forte: var(--sinal-forte);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 4.5rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  margin: 0;
+  background: var(--capim);
+  color: var(--nanquim);
+  font-family: var(--font-sans);
+  font-optical-sizing: auto;
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection { background: var(--sinal); color: #13222b; }
+
+:focus-visible {
+  outline: 3px solid var(--sinal);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 1.5px; }
+
+h1, h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
+
+.display {
+  font-variation-settings: 'wdth' 82;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+}
+
+/* Botão de ação: o único uso do amarelo-sinal fora do mapa. */
+.btn-sinal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 3.25rem;
+  padding: 0 1.4rem;
+  border-radius: 999px;
+  background: var(--sinal);
+  color: #13222b;
+  font-weight: 700;
+  font-size: 1.05rem;
+  white-space: nowrap;
+  text-decoration: none;
+  border: 2px solid #13222b;
+  box-shadow: 0 8px 18px -8px rgb(var(--sombra) / 0.55);
+  transition: transform 140ms var(--ease-out), box-shadow 140ms var(--ease-out), background-color 160ms ease;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+@media (hover: hover) and (pointer: fine) {
+  .btn-sinal:hover { background: var(--sinal-forte); }
+}
+.btn-sinal:active { transform: scale(0.97); box-shadow: 0 3px 8px -4px rgb(var(--sombra) / 0.5); }
+
+/* Fichas de escolha do pedido. */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0 1rem;
+  border-radius: 999px;
+  border: 1.5px solid color-mix(in oklab, var(--lagoa-texto) 55%, transparent);
+  color: var(--lagoa-texto);
+  font-weight: 560;
+  font-size: 0.98rem;
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  transition: transform 140ms var(--ease-out), background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+.chip:active { transform: scale(0.97); }
+@media (hover: hover) and (pointer: fine) {
+  .chip:hover { border-color: var(--lagoa-texto); }
+}
+input:checked + .chip,
+.chip[aria-pressed='true'] {
+  background: var(--sinal);
+  border-color: var(--sinal);
+  color: #13222b;
+}
+input:focus-visible + .chip { outline: 3px solid var(--sinal); outline-offset: 3px; }
+
+.field {
+  width: 100%;
+  min-height: 3rem;
+  border-radius: 14px;
+  border: 1.5px solid color-mix(in oklab, var(--lagoa-texto) 55%, transparent);
+  background: color-mix(in oklab, var(--lagoa-funda) 70%, transparent);
+  color: var(--lagoa-texto);
+  padding: 0 0.9rem;
+  font: inherit;
+  font-size: 1rem;
+  color-scheme: dark;
+}
+.field::placeholder { color: var(--lagoa-texto-2); }
+
+/* Água do croqui: linhas de hachura desenhadas à mão. */
+.hachura {
+  background-color: var(--lagoa);
+  background-image: repeating-linear-gradient(
+    172deg,
+    transparent 0 22px,
+    color-mix(in oklab, var(--lagoa-texto) 9%, transparent) 22px 23.5px
+  );
+}
+
+/* Abertura: a estrada se desenha e o círculo marca o sítio, uma vez. */
+@media (prefers-reduced-motion: no-preference) {
+  .js-motion .draw-road {
+    stroke-dasharray: 1 1;
+    stroke-dashoffset: 1;
+    animation: draw 1300ms var(--ease-out) 250ms forwards;
+  }
+  .js-motion .draw-ring {
+    stroke-dasharray: 1 1;
+    stroke-dashoffset: 1;
+    animation: draw 700ms var(--ease-out) 1250ms forwards;
+  }
+  .js-motion .reveal-note {
+    opacity: 0;
+    transform: translateY(4px);
+    animation: note 420ms var(--ease-out) forwards;
+    animation-delay: calc(1500ms + var(--i, 0) * 70ms);
+  }
+}
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes note { to { opacity: 1; transform: none; } }
+
+/* Galeria em faixa: rolagem nativa com encaixe. */
+.faixa {
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: var(--pasto-escuro) transparent;
+  overscroll-behavior-x: contain;
+}
+.faixa > * { scroll-snap-align: start; }
+
+/* Anotações do croqui: maiores no celular (o mapa mostra menos área), com contorno de papel para ler sobre terra ou água. */
+.spot-label {
+  font-size: 15px;
+  font-weight: 600;
+  paint-order: stroke;
+  stroke: var(--capim-claro);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+@media (min-width: 1024px) {
+  .spot-label { font-size: 11.5px; stroke-width: 3px; }
+}
+.spot .dot { transition: fill 160ms ease, stroke-width 160ms ease; }
+.spot:focus-visible .dot { stroke: var(--sinal); stroke-width: 4px; }
+.spot:focus-visible .spot-label { text-decoration: underline; }
+@media (hover: hover) and (pointer: fine) {
+  .spot:hover .dot { fill: var(--sinal); }
+}
